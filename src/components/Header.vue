@@ -4,9 +4,9 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn>Home</v-btn>
-    <v-btn>Login</v-btn>
-    <v-btn>Register</v-btn>
+    <v-btn text rounded to="/">Home</v-btn>
+    <v-btn text rounded to="/login">Login</v-btn>
+    <v-btn text rounded to="/signup">signup</v-btn>
   </v-app-bar>
 </template>
 
