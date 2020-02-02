@@ -1,8 +1,8 @@
 <template>
-  <v-app style="background: #78909C;">
-    <app-header></app-header>
+  <v-app>
+    <router-link to="/"><app-header></app-header></router-link>
     <v-content>
-      <app-login></app-login>
+      <router-view></router-view>
     </v-content>
     <app-footer></app-footer>
   </v-app>
@@ -11,14 +11,12 @@
 <script>
 import appHeader from './components/Header';
 import appFooter from './components/Footer';
-import appLogin from './views/Login';
 
 export default {
   name: 'App',
   components: {
     appHeader,
-    appFooter,
-    appLogin
+    appFooter
   },
   data() {
     return {
