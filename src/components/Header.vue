@@ -4,7 +4,6 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn text rounded to="/">Home</v-btn>
     <v-btn text rounded to="/login">Login</v-btn>
     <v-btn text rounded to="/signup">signup</v-btn>
   </v-app-bar>
