@@ -1,9 +1,11 @@
 <template>
   <v-app>
     <router-link to="/"><app-header></app-header></router-link>
+
     <v-content>
       <router-view></router-view>
     </v-content>
+
     <app-footer></app-footer>
   </v-app>
 </template>
