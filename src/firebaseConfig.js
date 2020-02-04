@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import store from './store'
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FB_API,
@@ -13,5 +14,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebaseApp.auth().onAuthStateChanged(user => {
+  if(user) {
+    store.dispatch('logged', user)
+  }
+})
 
 export default firebaseApp;
