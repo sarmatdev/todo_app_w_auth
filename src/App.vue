@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <router-link to="/"><app-header></app-header></router-link>
+    <app-header></app-header>
 
     <v-content>
       <router-view></router-view>
