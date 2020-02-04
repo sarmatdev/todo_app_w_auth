@@ -1,11 +1,5 @@
 <template>
   <v-container>
-    <!-- <v-progress-circular
-      size="70"
-      width="7"
-      color="purple"
-      indeterminate
-    ></v-progress-circular> -->
     <v-card width="400" class="mx-auto mt-5">
       <v-card-title>
         <h1 class="display-1">SignUp</h1>
@@ -44,21 +38,16 @@
       </v-card-actions>
     </v-card>
     <!-- Overlay -->
-
     <v-overlay value="overlay" v-if="loading">
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
-
-    <!-- Snackbar -->
-    <!-- <v-snackbar v-model="snackbar" :timeout="timeout" right top>
+    <v-snackbar v-model="snackbar" color="error" :timeout="timeout" right top>
       {{ submitStatus }}
-    </v-snackbar> -->
+    </v-snackbar>
   </v-container>
 </template>
 
 <script>
-// import store from '../store';
-
 export default {
   data() {
     return {
@@ -67,9 +56,9 @@ export default {
         email: '',
         password: ''
       },
-      snackbar: true,
-      timeout: 2000,
-      submitStatus: 'pereved',
+      snackbar: false,
+      timeout: 3000,
+      submitStatus: null
     };
   },
   methods: {
@@ -81,16 +70,20 @@ export default {
         })
         .then(() => {
           console.log('Account registered');
+          this.snackbar = true;
+          this.submitStatus = 'You are successfully registered!';
           this.$router.push('/');
         })
         .catch(error => {
           console.log(error.message);
+          this.snackbar = true;
+          this.submitStatus = error.message;
         });
     }
   },
   computed: {
     loading() {
-      return this.$store.getters.loading
+      return this.$store.getters.loading;
     }
   }
 };
