@@ -5,11 +5,17 @@
     </v-card-title>
     <v-card-text>
       <v-form>
-        <v-text-field label="Email" type="email" prepend-icon="mdi-email" />
+        <v-text-field
+          label="Email"
+          type="email"
+          prepend-icon="mdi-email"
+          v-model="email"
+        />
         <v-text-field
           type="password"
           label="Password"
           prepend-icon="mdi-lock"
+          v-model="password"
         />
       </v-form>
     </v-card-text>
@@ -23,7 +29,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+  }
+};
 </script>
 
 <style></style>
