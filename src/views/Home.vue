@@ -8,51 +8,94 @@
     <v-row>
       <v-col cols="12">
         <!-- ToDo-START -->
-        <v-card class="mx-auto" max-width="600" tile>
-          <v-list-item two-line>
-            <v-checkbox></v-checkbox>
-            <v-list-item-content>
-              <v-list-item-title
-                >Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Repellendus nihil non consequatur accusamus eos ducimus, dolorum
-                dolores quo voluptate eligendi accusantium ut maiores labore
-                minima culpa commodi ipsum excepturi vel.</v-list-item-title
-              >
-              <!-- <v-list-item-subtitle>Secondary text</v-list-item-subtitle> -->
-            </v-list-item-content>
-            <!-- <v-spacer></v-spacer> -->
+        <v-list class="mx-auto">
+          <v-card class="mx-auto mb-5" max-width="500px">
+            <v-card-text class="subtitle-1">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quo
+              modi, quod odit iure vel quisquam fuga laudantium voluptas ipsa
+              aspernatur sit, deserunt numquam!
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn class="mx-2" fab dark small color="primary">
+                <v-icon dark>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn class="mx-2" fab dark small color="error">
+                <v-icon dark>mdi-delete</v-icon>
+              </v-btn>
+              <v-btn class="mx-2" fab dark small color="success">
+                <v-icon dark>mdi-check</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+          <v-card class="mx-auto mb-5" max-width="500px">
+            <v-card-text class="subtitle-1">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quo
+              modi, quod odit iure vel quisquam fuga laudantium voluptas ipsa
+              aspernatur sit, deserunt numquam!
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn class="mx-2" fab dark small color="primary">
+                <v-icon dark>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn class="mx-2" fab dark small color="error">
+                <v-icon dark>mdi-delete</v-icon>
+              </v-btn>
+              <v-btn class="mx-2" fab dark small color="success">
+                <v-icon dark>mdi-check</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+          <v-card class="mx-auto mb-5" max-width="500px">
+            <v-card-text class="subtitle-1">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quo
+              modi, quod odit iure vel quisquam fuga laudantium voluptas ipsa
+              aspernatur sit, deserunt numquam!
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn class="mx-2" fab dark small color="primary">
+                <v-icon dark>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn class="mx-2" fab dark small color="error">
+                <v-icon dark>mdi-delete</v-icon>
+              </v-btn>
+              <v-btn class="mx-2" fab dark small color="success">
+                <v-icon dark>mdi-check</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+          <v-card class="mx-auto mb-5" max-width="500px">
+            <v-card-text class="subtitle-1">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quo
+              modi, quod odit iure vel quisquam fuga laudantium voluptas ipsa
+              aspernatur sit, deserunt numquam!
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn class="mx-2" fab dark small color="primary">
+                <v-icon dark>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn class="mx-2" fab dark small color="error">
+                <v-icon dark>mdi-delete</v-icon>
+              </v-btn>
+              <v-btn class="mx-2" fab dark small color="success">
+                <v-icon dark>mdi-check</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-list>
 
-            <v-btn class="mx-2" fab dark small color="primary">
-              <v-icon dark>mdi-delete</v-icon>
-            </v-btn>
-          </v-list-item>
-        </v-card>
         <!-- ToDo-END -->
       </v-col>
     </v-row>
     <!-- Add ToDo button -->
-    <v-row>
-      <v-col>
-        <v-btn
-          class="mx-2"
-          @click="showInput"
-          absolute
-          dark
-          fab
-          bottom
-          right
-          large
-          color="cyan"
-        >
-          <v-icon dark large>mdi-plus</v-icon>
-        </v-btn>
-      </v-col>
-    </v-row>
 
     <v-row justify="center">
       <v-dialog v-model="dialog" max-width="400px">
         <v-card>
-          <v-card-title class="display-1 font-weight-regular"
+          <v-card-title class="title font-weight-regular"
             >What You want to do?</v-card-title
           >
           <v-card-text>
@@ -60,15 +103,26 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn fab dark small color="primary">
-              <v-icon dark>mdi-check</v-icon>
-            </v-btn>
+            <v-btn rounded color="primary" block dark>Add task</v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
       </v-dialog>
     </v-row>
+    <v-btn
+      class="mx-2"
+      @click="showInput"
+      fixed
+
+      dark
+      fab
+      large
+      color="cyan"
+    >
+      <v-icon dark large>mdi-plus</v-icon>
+    </v-btn>
   </v-container>
+  
 </template>
 
 <script>
