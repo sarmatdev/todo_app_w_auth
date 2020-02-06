@@ -9,7 +9,7 @@ const routes = [
     path: '/',
     name: 'home',
     component: () => import('../views/Home.vue'),
-    beforeEnter: (to, from, next) => {
+    beforeRouteEnter: (to, from, next) => {
       if (store.getters.checkUser) {
         next();
       } else {
