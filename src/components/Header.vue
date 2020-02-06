@@ -28,12 +28,7 @@ export default {
     },
     links() {
       if (this.checkUser) {
-        return [
-          // {
-          //   title: 'Home',
-          //   url: '/'
-          // }
-        ];
+        return {};
       }
       return [
         {
