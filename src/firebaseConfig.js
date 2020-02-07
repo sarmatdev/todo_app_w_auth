@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/firestore';
+import 'firebase/database';
 import store from './store';
 
 const firebaseConfig = {
@@ -15,11 +15,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+export const firebaseApp = firebase.initializeApp(firebaseConfig);
+
 firebaseApp.auth().onAuthStateChanged(user => {
   if (user) {
     store.dispatch('logged', user);
+    store.dispatch('loadTasks')
   }
 });
-
-export default firebaseApp;
