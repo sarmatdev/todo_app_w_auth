@@ -1,36 +1,26 @@
-import firebaseApp from '@/firebaseConfig.js';
+import { firebaseApp } from '@/firebaseConfig.js';
 import User from '../user/userData';
 
 export default {
   state: {
-    user: null,
-    userName: ''
+    user: null
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload;
-    },
-    setUserName(state, payload) {
-      state.userName = payload;
     }
   },
   actions: {
-    async signUp({ commit }, { email, password, name }) {
+    async signUp({ commit }, { email, password }) {
       commit('clearError');
       commit('setLoading', true);
       try {
         const user = await firebaseApp
           .auth()
           .createUserWithEmailAndPassword(email, password);
-        if (user) {
-          firebaseApp.auth().currentUser.updateProfile({
-            displayName: name
-          });
-        }
-        commit('setUserName', name)
+
         commit('setUser', new User(user.user.uid));
         commit('setLoading', false);
-        console.log(user)
       } catch (error) {
         commit('setLoading', false);
         commit('setError', error.message);
