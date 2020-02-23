@@ -8,12 +8,11 @@
     <v-row>
       <v-col cols="12">
         <!-- ToDo-START -->
-        {{ getTasks }}
         <v-list class="mx-auto">
           <v-card
             class="mx-auto mb-5"
             max-width="500px"
-            v-for="task in getTasks"
+            v-for="task in getTodos"
             :key="task.id"
           >
             <v-card-text class="title" :class="{ done }">
@@ -30,14 +29,7 @@
               <v-btn class="mx-2" fab dark small color="error">
                 <v-icon dark>mdi-delete</v-icon>
               </v-btn>
-              <v-btn
-                class="mx-2"
-                fab
-                dark
-                small
-                color="success"
-                @click="checkDone"
-              >
+              <v-btn class="mx-2" fab dark small color="success">
                 <v-icon dark>mdi-check</v-icon>
               </v-btn>
             </v-card-actions>
@@ -67,25 +59,13 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn rounded color="primary" block dark @click="saveTask"
-              >Add task</v-btn
-            >
+            <v-btn rounded color="primary" block dark>Add task</v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
       </v-dialog>
     </v-row>
-    <v-btn
-      class="mx-2"
-      @click="showInput"
-      fixed
-      bottom
-      right
-      dark
-      fab
-      large
-      color="cyan"
-    >
+    <v-btn class="mx-2" fixed bottom right dark fab large color="cyan">
       <v-icon dark large>mdi-plus</v-icon>
     </v-btn>
   </v-container>
@@ -103,32 +83,12 @@ export default {
       }
     };
   },
-  methods: {
-    showInput() {
-      this.dialog = !this.dialog;
-    },
-    checkDone() {
-      this.done = !this.done;
-    },
-    saveTask() {
-      this.$store.dispatch('newTask', this.task);
-    }
+  created() {
+    this.$store.dispatch('loadTodos');
   },
   computed: {
-    getTasks() {
-      return this.$store.getters.getTasks;
-      // return [
-      //   {
-      //     title: 1,
-      //     description: 1,
-      //     id: 1
-      //   },
-      //   {
-      //     title: 2,
-      //     description: 2,
-      //     id: 2
-      //   }
-      // ];
+    getTodos() {
+      return this.$store.getters.getTodos;
     }
   }
 };
