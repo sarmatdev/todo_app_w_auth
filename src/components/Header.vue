@@ -32,6 +32,10 @@ export default {
       }
       return [
         {
+          title: 'Todo',
+          url: '/todo'
+        },
+        {
           title: 'Login',
           url: '/login'
         },
