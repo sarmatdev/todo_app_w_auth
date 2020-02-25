@@ -1,29 +1,24 @@
 <template>
   <v-app>
-    <app-header></app-header>
+    <Header></Header>
 
     <v-content>
       <router-view></router-view>
     </v-content>
 
-    <app-footer></app-footer>
+    <Footer></Footer>
   </v-app>
 </template>
 
 <script>
-import appHeader from './components/Header';
-import appFooter from './components/Footer';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 export default {
   name: 'App',
   components: {
-    appHeader,
-    appFooter
-  },
-  data() {
-    return {
-      showPassword: false
-    };
+    Header,
+    Footer
   }
 };
 </script>
