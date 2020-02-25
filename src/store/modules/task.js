@@ -10,11 +10,19 @@ export default {
       console.log(state.todos);
     },
     deleteTodo(state, id) {
-      const index = state.todos.findIndex(item => item.id == id)
-
+      const index = state.todos.findIndex(item => item.id == id);
       if (index >= 0) {
-        state.todos.splice(index, 1)
+        state.todos.splice(index, 1);
       }
+    },
+    updateTodo(state, todo) {
+      const index = state.todos.findIndex(item => item.id == todo.id);
+      state.todos.splice(index, 1, {
+        id: todo.id,
+        title: todo.title,
+        // completed: todo.completed
+        completed: false
+      });
     }
   },
   actions: {
@@ -57,11 +65,31 @@ export default {
         .then(() => {
           commit('deleteTodo', id);
         });
+    },
+    updateTodo({ commit }, todo) {
+      db.collection('todos')
+        .doc(todo.id)
+        .set({
+          id: todo.id,
+          title: todo.title,
+          // completed: todo.completed,
+          completed: false,
+          timestamp: new Date()
+        })
+        .then(() => {
+          commit('updateTodo', todo);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
   getters: {
     getTodos(state) {
       return state.todos;
+    },
+    getTodoById(state, id) {
+      return state.todos.filter(el => el.id === id);
     }
   }
 };
