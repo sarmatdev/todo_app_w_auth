@@ -8,7 +8,7 @@
         <v-card-text>
           <v-text-field
             placeholder="Type task here..."
-            v-model="todo.title"
+            v-model="todo"
           ></v-text-field>
         </v-card-text>
         <v-card-actions>
@@ -42,20 +42,16 @@ export default {
   data() {
     return {
       dialog: false,
-      todo: {
-        title: ''
-      }
+      todo: ''
     };
   },
   methods: {
     showDialog() {
       this.dialog = !this.dialog;
-      console.log(this.dialog);
-      console.log(this.updatable);
     },
     addTodo() {
       this.$store.dispatch('addTodo', this.todo);
-      this.todo.title = '';
+      this.todo = '';
       this.dialog = false;
     }
   }

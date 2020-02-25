@@ -7,6 +7,11 @@ export default {
   mutations: {
     setTodo(state, payload) {
       state.todos = payload;
+      // console.log(state.todos);
+    },
+    addTodo(state, payload) {
+      // console.log(payload);
+      state.todos.push(payload);
       console.log(state.todos);
     },
     deleteTodo(state, id) {
@@ -27,10 +32,12 @@ export default {
   },
   actions: {
     loadTodos({ commit }) {
+      commit('setLoading', true);
       db.collection('todos')
         .get()
         .then(querySnapshot => {
           let tempTodos = [];
+
           querySnapshot.forEach(doc => {
             const data = {
               id: doc.id,
@@ -42,21 +49,32 @@ export default {
           });
           commit('setTodo', tempTodos);
         });
+
+      commit('setLoading', false);
     },
     addTodo({ commit }, todo) {
       db.collection('todos')
         .add({
-          title: todo.title,
+          title: todo,
           completed: false,
           timestamp: new Date()
         })
         .then(docRef => {
-          commit('setTodo', {
+          commit('addTodo', {
             id: docRef.id,
-            title: todo.title,
-            completed: false
+            title: todo,
+            completed: false,
+            timestamp: new Date()
           });
         });
+
+      // .then(function(docRef) {
+      //   console.log('Document written with ID: ', docRef.id);
+      //   commit('addTodo', todo);
+      // })
+      // .catch(function(error) {
+      //   console.error('Error adding document: ', error);
+      // });
     },
     deleteTodo({ commit }, id) {
       db.collection('todos')
@@ -87,9 +105,6 @@ export default {
   getters: {
     getTodos(state) {
       return state.todos;
-    },
-    getTodoById(state, id) {
-      return state.todos.filter(el => el.id === id);
     }
   }
 };
