@@ -6,7 +6,7 @@
       v-for="task in getTodos"
       :key="task.id"
     >
-      <v-card-text class="title">
+      <v-card-text class="title" :class="{done}">
         {{ task.title }}
       </v-card-text>
       <v-card-actions>
@@ -31,7 +31,7 @@
         >
           <v-icon dark>mdi-delete</v-icon>
         </v-btn>
-        <v-btn class="mx-2" fab dark small color="success">
+        <v-btn class="mx-2" fab dark small color="success" @click="setCompleted(task.id)">
           <v-icon dark>mdi-check</v-icon>
         </v-btn>
       </v-card-actions>
@@ -49,7 +49,9 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn rounded color="primary" block dark @click="updateTodo">Update task</v-btn>
+          <v-btn rounded color="primary" block dark @click="updateTodo"
+            >Update task</v-btn
+          >
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-card>
@@ -61,15 +63,14 @@
 export default {
   data() {
     return {
+      task: '',
       updatable: {
         id: Number,
-        title: '',
+        title: ''
       },
-        show: false
+      show: false,
+      done: false
     };
-  },
-  created() {
-    this.$store.dispatch('loadTodos');
   },
   methods: {
     deleteTodo(id) {
@@ -81,9 +82,13 @@ export default {
       this.show = true;
     },
     updateTodo() {
-      this.$store.dispatch('updateTodo', this.updatable)
-      console.log('Updated')
-      this.show = false
+      this.$store.dispatch('updateTodo', this.updatable);
+      console.log('Updated');
+      this.show = false;
+    },
+    setCompleted(id) {
+      this.done = !this.done
+      console.log('Complete' + id)
     }
   },
   computed: {

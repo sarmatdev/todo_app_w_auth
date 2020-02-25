@@ -9,6 +9,9 @@ import TodoItem from './TodoItem';
 export default {
   components: {
     TodoItem
+  },
+  created() {
+    this.$store.dispatch('loadTodos');
   }
 };
 </script>
