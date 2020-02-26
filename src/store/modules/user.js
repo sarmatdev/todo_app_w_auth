@@ -2,7 +2,7 @@ import firebaseApp from 'firebase/app';
 
 export default {
   state: {
-    user: null
+    user: {}
   },
   mutations: {
     setUser(state, payload) {
@@ -19,7 +19,6 @@ export default {
           res.user.updateProfile({
             displayName: name
           });
-          console.log(res.user);
           const user = {
             name,
             id: res.user.uid,
@@ -50,12 +49,19 @@ export default {
       commit('setUser', null);
     },
     stayLogged({ commit }, user) {
-      commit('setUser', user);
+      commit('setUser', {
+        name: user.displayName,
+        id: user.uid,
+        email: user.email
+      });
     }
   },
   getters: {
     checkUser(state) {
       return state.user !== null;
+    },
+    getUsername(state) {
+      return state.user.name;
     }
   }
 };
