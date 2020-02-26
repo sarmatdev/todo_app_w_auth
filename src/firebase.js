@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import 'firebase/auth'
+import 'firebase/auth';
+import store from './store'
 
 const config = {
   apiKey: process.env.VUE_APP_FB_API,
@@ -15,6 +16,12 @@ const config = {
 
 // Initialize Firebase
 const firebaseApp = firebase.initializeApp(config);
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    store.dispatch('stayLogged', user)
+  }
+});
 
 const firestore = firebaseApp.firestore();
 firestore.settings({});
